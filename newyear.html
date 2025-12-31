@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#ffd6e8,#dbeafe);
+    overflow:hidden;
+    font-family:'Great Vibes', cursive;
+}
+
+/* START SCREEN */
+#start{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    background:linear-gradient(135deg,#ffd6e8,#dbeafe);
+    z-index:10;
+    cursor:pointer;
+}
+
+#start h1{
+    color:#ff4d88;
+    font-size:55px;
+}
+
+#start p{
+    font-family:Poppins;
+    color:#555;
+}
+
+/* COUNTDOWN */
+#countdown{
+    font-size:90px;
+    color:#ff4d88;
+    display:none;
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+    50%{transform:scale(1.2);}
+}
+
+/* CARD */
+.card{
+    display:none;
+    background:rgba(255,255,255,0.95);
+    padding:40px;
+    max-width:520px;
+    width:85%;
+    border-radius:25px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.15);
+    text-align:center;
+    animation:fade 2s ease;
+}
+
+@keyframes fade{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+h1{color:#ff4d88; font-size:45px;}
+h2{font-size:28px; color:#444;}
+
+p{
+    font-family:Poppins;
+    color:#555;
+    line-height:1.8;
+}
+
+.heart{
+    font-size:40px;
+    animation:beat 1.5s infinite;
+}
+
+@keyframes beat{
+    50%{transform:scale(1.2);}
+}
+
+/* BUBBLES */
+.bubble{
+    position:absolute;
+    bottom:-50px;
+    background:rgba(255,182,193,0.4);
+    border-radius:50%;
+    animation:float 8s linear infinite;
+}
+
+@keyframes float{
+    to{transform:translateY(-110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- START SCREEN -->
+<div id="start">
+    <h1>Tap to Begin 💕</h1>
+    <p>Music & countdown will start</p>
+</div>
+
+<!-- COUNTDOWN -->
+<div id="countdown">10</div>
+
+<!-- MESSAGE CARD -->
+<div class="card" id="card">
+    <h1>Happy New Year 🎉</h1>
+    <h2>To My Best Friend 💖</h2>
+
+    <p>
+        Thank you for being the most beautiful part of my life’s journey. 
+        For every laugh we shared, every problem you stood by me in, and 
+        every moment that turned ordinary days into special memories 
+        — I’m truly grateful.
+    </p>
+
+    <div class="heart">💖</div>
+
+    <p>
+        May this new year bring you happiness, confidence, success, 
+        and endless reasons to smile. No matter what changes, I hope our 
+        friendship always stays the same — strong, honest, and full of warmth.
+    </p>
+
+    <p style="font-family:Great Vibes; font-size:22px;">
+        — Your Best Friend ✨
+           
+               Ayu ~ 
+    </p>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+    <source src="newyear.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* bubbles */
+for(let i=0;i<15;i++){
+    let b=document.createElement("div");
+    b.className="bubble";
+    let s=Math.random()*30+15;
+    b.style.width=s+"px";
+    b.style.height=s+"px";
+    b.style.left=Math.random()*100+"vw";
+    b.style.animationDuration=(Math.random()*5+5)+"s";
+    document.body.appendChild(b);
+}
+
+let start=document.getElementById("start");
+let countdown=document.getElementById("countdown");
+let card=document.getElementById("card");
+let music=document.getElementById("music");
+let count=10;
+
+start.onclick=()=>{
+    start.style.display="none";
+    countdown.style.display="block";
+    music.play();
+
+    let timer=setInterval(()=>{
+        countdown.textContent=count;
+        count--;
+        if(count<0){
+            clearInterval(timer);
+            countdown.style.display="none";
+            card.style.display="block";
+        }
+    },1000);
+};
+</script>
+
+</body>
+</html>
+
+
+          
